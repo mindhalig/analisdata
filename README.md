@@ -15,4 +15,4 @@ streamlit run dashboard.py
 https://kyouyjxegaqxv6e5gazszu.streamlit.app/
 ```
 ### Screenshoot
-![Screenshot](Screenshot from 2023-09-30 02-28-21.png)
+![Screenshot](https://github.com/mindhalig/analisdata/blob/master/Screenshot%20from%202023-09-30%2002-28-21.png)
