@@ -20,15 +20,38 @@ top_values = all_df[selected_column].value_counts().head(5)
 st.write(f"Lima arah angin dominan yang sering terjadi di Kolom '{selected_column}' dalam dataset '{dataset}':")
 fig = px.bar(top_values, x=top_values.index, y=top_values.values, labels={selected_column: 'Nilai', 'index': 'Frekuensi'})
 st.plotly_chart(fig)
-with st.expander('Lihat'):
+with st.expander('Keterangan'):
     st.write(top_values)
 
 st.subheader(subheader2)
-st.write(f"Pengaruh faktor cuaca seperti kecepatan angin, kelembaban, atau tekanan udara terhadap tingkat  {subheader2}")
-correlation_matrix = all_df[['O3', 'RAIN', 'TEMP', 'PRES', 'DEWP']].corr()
-st.write(f"Heatmap korelasi antara variabel cuaca dan tingkat {subheader2} dalam dataset '{dataset}':")
-fig, ax = plt.subplots()
-sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', ax=ax)
-st.pyplot(fig)
+st.write(f"Pengaruh faktor cuaca seperti kecepatan angin, kelembaban, atau tekanan udara terhadap tingkat  {subheader2}=")
+
+column1 = 'O3'
+column2 = 'TEMP'
+column3 = 'PRES'
+
+st.write(f"1. Korelasi antara {column1} dan {column2}")
+
+plt.figure(figsize=(10, 6))
+plt.scatter(all_df['O3'], all_df['TEMP'])
+plt.xlabel(column1)
+plt.ylabel(column2)
+st.set_option('deprecation.showPyplotGlobalUse', False)
+st.pyplot()
+with st.expander('Keterangan'):
+    st.write(f"Tingkat ozon cenderung lebih tinggi pada hari-hari yang lebih panas")
+
+
+st.write(f"2. Korelasi antara {column1} dan {column2}")
+plt.figure(figsize=(10, 6))
+plt.scatter(all_df['O3'], all_df['PRES'])
+plt.xlabel(column1)
+plt.ylabel(column2)
+st.set_option('deprecation.showPyplotGlobalUse', False)
+st.pyplot()
+with st.expander('Keterangan'):
+    st.write(f"Tingkat ozon cenderung menurun pada saat tekanan udara meningkat, dan jika tekanan udara menurun tingkat ozon cenderung meningkat")
+
+
 
 st.caption('Copyright (c) 2023')
